@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{748588F9-1A5B-4E2F-800F-E597B765BF22}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.TripExpenseManager PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.1D5D8F9F-4DD9-416F-9E78-11C95BE5F229" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.1D5D8F9F-4DD9-416F-9E78-11C95BE5F229" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TripExpenseManager/Pages/SaveTripPage.razor">
+    <Files>
+      <File FileName="TripExpenseManager/Platforms/iOS/Program.cs" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Platforms/MacCatalyst/Program.cs" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Services/SeedDataService.cs" Line="17" Column="41" />
+      <File FileName="TripExpenseManager/Data/LocationCategory.cs" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Pages/SettingsPage.razor" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Pages/SaveExpensePage.razor" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Pages/ManageExpenseCategoriesPage.razor" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Pages/Index.razor" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Pages/SingleTripPage.razor" Line="35" Column="19" />
+      <File FileName="TripExpenseManager/Pages/SaveTripPage.razor" Line="141" Column="46" />
+      <File FileName="TripExpenseManager/Services/TripService.cs" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Services/DropdownsService.cs" Line="1" Column="1" />
+      <File FileName="TripExpenseManager/Services/AuthService.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TripExpenseManager" expanded="True">
+            <Node name="TripExpenseManager" expanded="True" selected="True">
+              <Node name="Pages" expanded="True" />
+              <Node name="Resources" expanded="True" />
+              <Node name="States" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="images" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

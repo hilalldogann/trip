@@ -1,0 +1,2 @@
+/Users/hilaldogan/Desktop/trip/TripExpenseManagendroid/android/assets/System.Diagnostics.Tools.dll
+/net7.0-android/android/src/mono/com/google/android/material/button/MaterialButton_OnCheckedChangeListenerImplementor.java

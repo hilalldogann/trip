@@ -1,0 +1,62 @@
+﻿@page "/signin"
+@layout AuthLayout
+
+@inject NavigationManager NavigationManager
+
+@inject AuthService AuthService
+@inject MauiInterop Maui
+  
+        <EditForm Model="_model" OnValidSubmit="SigninAsync">
+            <DataAnnotationsValidator />
+            <div class="card border-0 shadow-sm" style="border-radius: 50px; background-color: lightblue;">
+                <div class="card-body text-center">
+                    <h4>HOŞ GELDİNİZ</h4>
+                    <p class="text-muted">Müzem hesabınız ile Giriş Yapınız</p>
+                    <div class="vstack text-start">
+                        <div class="mb-3">
+                            <label class="form-label">Kullanıcı Adı</label>
+                            <InputText @bind-Value="_model.Username" placeholder="Kullanıcı Adınızı Giriniz" class="form-control rounded-pill fs-6" />
+                            <ValidationMessage For="() => _model.Username" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şifre</label>
+                            <InputText @bind-Value="_model.Password" type="password" placeholder="Şifrenizi Giriniz" class="form-control rounded-pill fs-6" />
+                            <ValidationMessage For="() => _model.Password" />
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-pill">Giriş Yapınız</button>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+  <p class="text-center mt-3">Hesabınız Yok Mu? </p>
+  <p class="text-center mt-3"><NavLink href="/signup">Kaydolun</NavLink> </p>
+
+    @code {
+        private SigninModel _model = new();
+
+        private async Task SigninAsync()
+        {
+            Maui.ShowLoader();
+            try
+            {
+                var result = await AuthService.SigninAsync(_model);
+                if (result.IsSuccess)
+                {
+                    NavigationManager.NavigateTo("/home", replace: true);
+                }
+                else
+                {
+                    await Maui.ShowErrorAlertAsync(result.Error ?? "Giriş Yapılamadı");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Maui.ShowErrorAlertAsync(ex.Message);
+            }
+            finally
+            {
+                Maui.HideLoader();
+            }
+        }
+    }
+

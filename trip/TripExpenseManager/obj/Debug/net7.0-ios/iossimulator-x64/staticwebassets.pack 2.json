@@ -1,0 +1,145 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/obj/Debug/net7.0-ios/iossimulator-x64/scopedcss/bundle/TripExpenseManager.styles.css",
+      "PackagePath": "staticwebassets/TripExpenseManager.styles.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/.DS_Store",
+      "PackagePath": "staticwebassets/boxicons/.DS_Store"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/css/animations.css",
+      "PackagePath": "staticwebassets/boxicons/css/animations.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/css/boxicons.css",
+      "PackagePath": "staticwebassets/boxicons/css/boxicons.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/css/boxicons.min.css",
+      "PackagePath": "staticwebassets/boxicons/css/boxicons.min.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/css/transformations.css",
+      "PackagePath": "staticwebassets/boxicons/css/transformations.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/boxicons/fonts/boxicons.ttf",
+      "PackagePath": "staticwebassets/boxicons/fonts/boxicons.ttf"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/.DS_Store",
+      "PackagePath": "staticwebassets/css/.DS_Store"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/fonts/Poppins-Bold.ttf",
+      "PackagePath": "staticwebassets/css/fonts/Poppins-Bold.ttf"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/css/fonts/Poppins-Regular.ttf",
+      "PackagePath": "staticwebassets/css/fonts/Poppins-Regular.ttf"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/architecture-and-city.png",
+      "PackagePath": "staticwebassets/images/architecture-and-city.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/chair.png",
+      "PackagePath": "staticwebassets/images/chair.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/conservation.png",
+      "PackagePath": "staticwebassets/images/conservation.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/hills.png",
+      "PackagePath": "staticwebassets/images/hills.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/island.png",
+      "PackagePath": "staticwebassets/images/island.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/moca.png",
+      "PackagePath": "staticwebassets/images/moca.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/money.jpg",
+      "PackagePath": "staticwebassets/images/money.jpg"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/mountain.png",
+      "PackagePath": "staticwebassets/images/mountain.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/religious.png",
+      "PackagePath": "staticwebassets/images/religious.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/travel-and-tourism.png",
+      "PackagePath": "staticwebassets/images/travel-and-tourism.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/travel.png",
+      "PackagePath": "staticwebassets/images/travel.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/travel_beach.jpg",
+      "PackagePath": "staticwebassets/images/travel_beach.jpg"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/undraw_Forgot_password.png",
+      "PackagePath": "staticwebassets/images/undraw_Forgot_password.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/undraw_Sign_up.png",
+      "PackagePath": "staticwebassets/images/undraw_Sign_up.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/images/undraw_login.png",
+      "PackagePath": "staticwebassets/images/undraw_login.png"
+    },
+    {
+      "Id": "/Users/hilaldogan/Desktop/trip/TripExpenseManager/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "obj/Debug/net7.0-ios/iossimulator-x64/staticwebassets/msbuild.TripExpenseManager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0-ios/iossimulator-x64/staticwebassets/msbuild.build.TripExpenseManager.props",
+      "PackagePath": "build\\TripExpenseManager.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0-ios/iossimulator-x64/staticwebassets/msbuild.buildMultiTargeting.TripExpenseManager.props",
+      "PackagePath": "buildMultiTargeting\\TripExpenseManager.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0-ios/iossimulator-x64/staticwebassets/msbuild.buildTransitive.TripExpenseManager.props",
+      "PackagePath": "buildTransitive\\TripExpenseManager.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,89 @@
+﻿@page "/settings"
+
+@inject NavigationManager NavigationManager
+
+@inject MauiInterop Maui
+@inject AppState AppState
+@inject AuthService Auth
+
+<div class="container p-3">
+    <div class="d-flex flex-column justify-content-center align-items-center h-remaining">
+        <label class="rounded-circle text-uppercase bg-success bg-gradient text-white text-center fw-bold shadow-lg avatar">
+            @Auth.CurrentUser.Name?[0]
+        </label>
+        <div class="flex-grow-1 my-3 py-2 w-100 d-flex align-items-center">
+            <ul class="list-group list-group-flush w-100">
+                <li class="list-group-item" @onclick="ChangeNameAsync">
+                    <div class="hstack gap-3">
+                        <i class="bx bx-sm bx-user"></i>
+                        <label>Profilim</label>
+                    </div>
+                </li>
+                <li class="list-group-item" @onclick="ChangePasswordAsync">
+                    <div class="hstack gap-3">
+                        <i class="bx bx-sm bx-lock"></i>
+                        <label>Şifre Değiştirme</label>
+                    </div>
+                </li>
+                <li class="list-group-item" @onclick="GoToManageExpenseCategoriesPage">
+                    <div class="hstack gap-3">
+                        <i class="bx bx-sm bx-grid"></i>
+                        <label>Kategorileri Yönet</label>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+        <label class="bg-danger rounded-pill py-1 px-3 text-white m-0 d-flex align-items-center" @onclick="Signout">
+            <i class="bx bx-log-out m-0 p-0 me-2"></i>
+            <span>Çıkış Yap</span>
+        </label>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        AppState.SetSelectedMenuItem(AppConstants.MenuItems.Settings);
+        AppState.AddTabbarItems(new TabbarItem("bx-sm bx-info-circle", () => Maui.OpenInLauncher("https://muze.gov.tr/muzeler")));
+    }
+    private void Signout()
+    {
+        Auth.SignOut();
+        NavigationManager.NavigateTo("/signin", replace: true);
+    }
+    private async Task ChangeNameAsync()
+    {
+        var newName = await Maui.ShowPromptAsync("Adınız", "Adınızı giriniz", "Kaydet", Auth.CurrentUser.Name);
+        if (!string.IsNullOrWhiteSpace(newName))
+        {
+            Maui.ShowLoader();
+            await Auth.ChangeNameAsync(newName);
+            Maui.HideLoader();
+        }
+    }
+
+    private async Task ChangePasswordAsync()
+    {
+        var newPassword = await Maui.ShowPromptAsync("Şifreyi değiştir", "Yeni Şifre Giriniz", "Yeni Şifreyi Kaydet", string.Empty);
+        if (!string.IsNullOrWhiteSpace(newPassword))
+        {
+            Maui.ShowLoader();
+            await Auth.ChangePasswordAsync(newPassword);
+            Maui.HideLoader();
+        }
+    }
+    private void GoToManageExpenseCategoriesPage() => NavigationManager.GoToInnerPage("manage-expense-categories");
+
+}
+
+<style type="text/css" scoped>
+    .h-remaining{
+        height: calc(100vh - var(--navbar-height) - 100px); 
+    }
+    .avatar{
+        height: 80;
+        width: 80px;
+        font-size: 50px;
+    }
+</style>

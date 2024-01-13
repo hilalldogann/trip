@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="TripExpenseManager.app/TripExpenseManager">
+      <BCSymbolMapName>TripExpenseManager.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>TripExpenseManager.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/hilaldogan/Desktop/trip/TripExpenseManager/obj/Debug/net7.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>TripExpenseManager.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/hilaldogan/Desktop/trip/TripExpenseManager</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

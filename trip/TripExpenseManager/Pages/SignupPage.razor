@@ -1,0 +1,68 @@
+﻿@page "/signup"
+
+@layout AuthLayout
+
+@inject NavigationManager NavigationManager
+
+@inject AuthService AuthService
+@inject MauiInterop Maui
+
+<EditForm Model="_model" OnValidSubmit="SignupAsync">
+    <DataAnnotationsValidator />
+    <div class="card border-0 shadow-sm" style="border-radius: 50px; background-color: lightblue;">
+        <div class="card-body text-center">
+            <h4>HOŞ GELDİNİZ</h4>
+            <p class="text-muted">Müzem için Hesap Oluşturunuz</p>
+            <div class="vstack text-start">
+                <div class="mb-3">
+                    <label class="form-label">İsim</label>
+                    <InputText @bind-Value="_model.Name" placeholder="İsim Giriniz" class="form-control rounded-pill fs-6" />
+                    <ValidationMessage For="() => _model.Name" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Kullanıcı Adı</label>
+                    <InputText @bind-Value="_model.Username" placeholder="Kullanıcı Adı Giriniz" class="form-control rounded-pill fs-6" />
+                    <ValidationMessage For="() => _model.Username" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Şifre</label>
+                    <InputText @bind-Value="_model.Password" type="password" placeholder="Şifre Giriniz" class="form-control rounded-pill fs-6" />
+                    <ValidationMessage For="() => _model.Password" />
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill">Kaydol</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+<p class=" text-end mt-3">Zaten Bir Hesabınız var mı? <NavLink href="/signin">Giriş Yap</NavLink> </p>
+
+
+@code {
+    private SignupModel _model = new();
+
+    private async Task SignupAsync()
+    {
+        Maui.ShowLoader();
+        try
+        {
+            var result = await AuthService.SignupAsync(_model);
+            if (result.IsSuccess)
+            {
+                NavigationManager.NavigateTo("/home", replace: true);
+            }
+            else
+            {
+                await Maui.ShowErrorAlertAsync(result.Error ?? "Kayıt Oluşturulamadı");
+            }
+        }
+        catch (Exception ex)
+        {
+            await Maui.ShowErrorAlertAsync(ex.Message);
+
+        }
+        finally
+        {
+            Maui.HideLoader();
+        }
+    }
+}

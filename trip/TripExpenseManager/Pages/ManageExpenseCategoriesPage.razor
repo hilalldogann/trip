@@ -1,0 +1,61 @@
+﻿@page "/manage-expense-categories"
+
+@layout InnerPagesLayout
+
+@inject MauiInterop Maui
+@inject AppState AppState
+@inject DropdownsService Dropdowns
+@inject TripService TripService
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+                @foreach(var category in _categories)
+                {
+                    <li class="list-group-item">@category</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private string[] _categories = Array.Empty<string>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        AppState.SetInnerPageTitle("Kategorileri Düzenle");
+        AppState.AddTabbarItems(new TabbarItem("bx bx-sm bx-plus", () => AddNewCategoryAsync()));
+        await LoadCategoriesAsync();
+    }
+
+    private async Task LoadCategoriesAsync()
+    {
+        Maui.ShowLoader();
+        _categories = await Dropdowns.GetExpenseCategoriesAsync();
+        Maui.HideLoader();
+    }
+
+    private async Task AddNewCategoryAsync()
+    {
+        var newCategory = await Maui.ShowPromptAsync("Kategori Masrafı", "Yeni Kategori Masrafı ismi girin", "Kaydet", "Kategori ismi girin");
+        if (!string.IsNullOrWhiteSpace(newCategory))
+        {
+            Maui.ShowLoader();
+            var result = await TripService.SaveExpenseCategoryAsync(newCategory);
+            Maui.HideLoader();
+            if (!result.IsSuccess)
+            {
+                await Maui.ShowErrorAlertAsync(result.Error ?? "Hata oluştu");
+            }
+            else
+            {
+                await LoadCategoriesAsync();
+                StateHasChanged();
+            }
+        }
+    }
+}
+

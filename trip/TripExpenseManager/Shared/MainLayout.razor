@@ -1,0 +1,94 @@
+﻿@using System.ComponentModel
+
+@inherits LayoutComponentBase
+
+
+@implements IDisposable
+
+@inject NavigationManager NavigationManager
+
+@inject MauiInterop Maui
+@inject AppState AppState
+
+<div class="w-100 position-fixed p-3 mb-3 bg-white shadow-sm top-navbar">
+    <div class="hstack gap-3">
+        <h3 class="m-0 w-100 @(Maui.IsIOS ? "text-center" : "text-start")">
+            @AppState.PageTitle
+        </h3>
+        @*<i class="bx bx-user-circle bx-sm text-dark"></i>*@
+        @if(AppState.TabbarItems.Length > 0)
+{
+                <label>
+                    @foreach(var tabbarItem in AppState.TabbarItems)
+                    {
+                        <i class="bx text-dark @tabbarItem.Icon" @onclick="@tabbarItem.OnTap"/>
+                    }
+                </label>
+}
+    </div>
+</div>
+<div class="body-content">
+    @Body
+</div>
+
+<div class="d-flex justify-content-center w-100">
+    <div class="d-flex justify-content-between align-items-center vw-90 p-2 mx-1 my-2 bg-success bg-gradient position-fixed rounded-pill shadow-lg bottom-tabbar">
+        <label class="rounded-pill px-3 py-1 m-0  text-white d-flex flex-column align-items-center @(IsHomeSelected ? "shadow-lg" : "light-white")"
+               @onclick="() => GoToPage(AppConstants.MenuItems.Home)">
+            <i class="bx @(IsHomeSelected ? "bxs-home" : "bx-home") m-0 p-0"></i>
+            <span class="">Home</span>
+        </label>
+        <label class="rounded-pill px-3 py-1 text-white m-0 d-flex flex-column align-items-center  @(IsTripsSelected ? "shadow-lg" : "light-white")" @onclick="() => GoToPage(AppConstants.MenuItems.Trips)">
+            <i class="bx @(IsTripsSelected ? "bxs-food-menu" : "bx-food-menu")  m-0 p-0"></i>
+            <span class="">Trips</span>
+        </label>
+
+        <label class="rounded-pill px-3 py-1 light-white m-0 d-flex flex-column align-items-center" @onclick ="@(() => GoToInnerPage("/trips/add"))">
+            <i class="bx bx-plus-circle bx-md m-0 p-0"></i>
+        </label>
+
+        <label class="rounded-pill px-3 py-1 text-white m-0 d-flex flex-column align-items-center  @(IsSettingsSelected ? "shadow-lg" : "light-white")"  @onclick="() => GoToPage(AppConstants.MenuItems.Settings)">
+            <i class="bx @(IsSettingsSelected ? "bxs-cog" : "bx-cog") m-0 p-0"></i>
+            <span class="">Settings</span>
+        </label>
+    </div>
+</div>
+
+@code{
+    private static IDictionary<string, string> _pagesMap = new Dictionary<string, string>
+    {
+        [AppConstants.MenuItems.Home] = "/",
+        [AppConstants.MenuItems.Trips] = "/trips",
+        [AppConstants.MenuItems.Settings] = "/settings"
+    };
+
+    private bool IsHomeSelected => AppState.SelectedMenuItem == AppConstants.MenuItems.Home;
+    private bool IsTripsSelected => AppState.SelectedMenuItem == AppConstants.MenuItems.Trips;
+    private bool IsSettingsSelected => AppState.SelectedMenuItem == AppConstants.MenuItems.Settings;
+
+    protected override void OnInitialized()
+    {
+        AppState.PropertyChanged += OnAppStatePropertyChanged;
+    }
+
+    private void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if(e.PropertyName == nameof(AppState.SelectedMenuItem) || e.PropertyName == nameof(AppState.TabbarItems))
+            StateHasChanged();
+    }
+
+
+    private void GoToPage(string pageName)
+    {
+        NavigationManager.NavigateTo(_pagesMap[pageName]);
+    }
+    private void GoToInnerPage(string url)
+    {
+        NavigationManager.GoToInnerPage(url);
+    }
+
+    public void Dispose()
+    {
+        AppState.PropertyChanged -= OnAppStatePropertyChanged;
+    }
+}

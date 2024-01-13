@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - /Users/hilaldogan/Desktop/trip/TripExpenseManager/bin/Debug/net7.0-ios/iossimulator-x64/TripExpenseManager.app/libxamarin-dotnet-debug.dylib

@@ -1,0 +1,164 @@
+﻿@page "/trips/add"
+@page "/trips/{TripId:int}/edit"
+
+@layout InnerPagesLayout
+
+@inject NavigationManager NavigationManager 
+
+@inject MauiInterop Maui
+@inject DropdownsService Dropdowns
+@inject TripService TripService
+@inject AppState AppState
+
+<div class="img-container m-0 p-0 vw-100"></div>
+
+<EditForm Model="_model" OnValidSubmit="SaveTripAsync">
+    <DataAnnotationsValidator />
+
+    <FormContent Heading="@_heading" ButtonText="Geziyi Kaydet">
+        <div class="mb-3">
+            <label class="form-label">Kategori</label>
+            <InputText type="hidden" @bind-Value="_model.CategoryImage" />
+            <div class="d-flex flex-wrap justify-content-around">
+                @foreach (var category in _locationCategories)
+                {
+                    var iconClass = "bx-check-circle text-muted";
+                    var borderClass = "";
+                    var nameClass = "text-muted";
+                    if (_model.CategoryImage == category.Image)
+                    {
+                        iconClass = "bxs-check-circle text-success";
+                        borderClass = "border-success shadow";
+                        nameClass = "text-dark";
+                    }
+                    <div class="rounded ps-1 vstack text-center border m-1 @borderClass" @onclick="() => ToggleCategorySelection(category)">
+                        <i class="position-absolute bx @iconClass"></i>
+                        <img class="mx-auto category-img" src="@category.Image" />
+                        <label class="category-label @nameClass">@category.Name</label>
+                    </div>
+                }
+            </div>
+            <ValidationMessage For="() => _model.CategoryImage" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Müze İsmi</label>
+            <InputText @bind-Value="_model.Title" class="form-control rounded-pill fs-6" placeholder="Müze ismi" />
+            <ValidationMessage For="() => _model.Title" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gezi Lokasyonu (İlçe/Şehir/Ülke)</label>
+            <InputText @bind-Value="_model.Location" class="form-control rounded-pill fs-6" placeholder="Gezi Lokasyonu" />
+            <ValidationMessage For="() => _model.Location" />
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Başlangıç Tarihi</label>
+                    <InputDate @bind-Value="_model.FromDate" class="form-control rounded-pill fs-6" placeholder="Gezi Başlangıç Tarihi" />
+                    <ValidationMessage For="() => _model.FromDate" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Bitiş Tarihi</label>
+                    <InputDate @bind-Value="_model.ToDate" class="form-control rounded-pill fs-6" placeholder="Gezi Bitiş Tarihi" />
+                    <ValidationMessage For="() => _model.ToDate" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Trip status</label>
+
+            <InputSelect @bind-Value="_model.DisplayStatus" class="form-control rounded-pill fs-6">
+                @foreach (var status in _statuses)
+                {
+                    <option value="@status">@status</option>
+                }
+            </InputSelect>
+
+            <ValidationMessage For="() => _model.Status" />
+        </div>
+
+    </FormContent>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public int? TripId { get; set; }
+
+    Trip _model = new();
+
+    private LocationCategory[] _locationCategories = Array.Empty<LocationCategory>();
+    private string[] _statuses = Array.Empty<string>();
+
+    private string _heading = "Gezi Ekle";
+
+    protected override async Task OnInitializedAsync()
+    {
+        AppState.NoTabbarItems();
+        Maui.ShowLoader();
+        _locationCategories = await Dropdowns.GetLocationCategoriesAsync();
+        _statuses = Dropdowns.GetTripStatuses();
+
+        if(TripId > 0)
+        {
+            _heading = "Geziyi Düzenle";
+            _model = await TripService.GetTripAsync(TripId.Value);
+        }
+        AppState.SetInnerPageTitle(_heading);
+
+        Maui.HideLoader();
+    }
+
+    private void ToggleCategorySelection(LocationCategory category)
+    {
+        if (_model.CategoryImage == category.Image)
+            _model.CategoryImage = string.Empty;
+        else
+            _model.CategoryImage = category.Image;
+    }
+    private async Task SaveTripAsync()
+    {
+        Maui.ShowLoader();
+        try
+        {
+            var result = await TripService.SaveTripAsync(_model);
+            if (result.IsSuccess)
+            {
+                await Maui.ShowToastAsync("Gezi Kaydedildi");
+                NavigationManager.GoBack();
+            }
+            else
+            {
+                await Maui.ShowErrorAlertAsync(result.Error ?? "Hata");
+            }
+        }
+        catch (Exception ex)
+        {
+            await Maui.ShowErrorAlertAsync(ex.Message);
+        }
+        finally
+        {
+            Maui.HideLoader();
+        }
+    }
+}
+
+<style type="text/css">
+    .img-container{
+        background-image: url('/images/arkaplan.jpg');
+        background-position-y: -100px;
+        height: 250px;
+    }
+    
+    .category-img{
+        width: 25px;
+        height: 25px;
+    }
+    .category-label{
+        font-size: 12px;
+    }
+</style>

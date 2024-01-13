@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{EAA22D7F-385E-4A57-9C3F-D5431BB51198}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.TripExpenseManager PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F141D640-6F67-479F-BA7A-82C168913F16" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F141D640-6F67-479F-BA7A-82C168913F16" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/SeedDataService.cs">
+    <Files>
+      <File FileName="MauiProgram.cs" />
+      <File FileName="AppConstants.cs" />
+      <File FileName="App.xaml.cs" />
+      <File FileName="App.xaml" />
+      <File FileName="wwwroot/index.html" />
+      <File FileName="wwwroot/boxicons/css/animations.css" />
+      <File FileName="wwwroot/boxicons/css/boxicons.css" />
+      <File FileName="wwwroot/boxicons/css/transformations.css" />
+      <File FileName="States/AppState.cs" />
+      <File FileName="Shared/MainLayout.razor" />
+      <File FileName="Shared/InnerPagesLayout.razor" />
+      <File FileName="Shared/FormContent.razor" />
+      <File FileName="Shared/AuthLayout.razor" />
+      <File FileName="Services/TripService.cs" />
+      <File FileName="Services/SeedDataService.cs" Line="22" Column="62" />
+      <File FileName="Services/DropdownsService.cs" />
+      <File FileName="Services/AuthService.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TripExpenseManager" expanded="True">
+            <Node name="TripExpenseManager" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="SeedDataService.cs" selected="True" />
+              </Node>
+              <Node name="Shared" expanded="True" />
+              <Node name="States" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

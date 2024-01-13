@@ -1,0 +1,123 @@
+﻿@page "/trips/{tripId:int}"
+
+@layout InnerPagesLayout
+
+@inject NavigationManager NavigationManager
+
+@inject MauiInterop Maui
+@inject TripService TripService
+@inject AppState AppState
+
+@if (_trip is not null)
+    {
+    <div class="container-fluid m-0 p-0">
+        <a href="https://www.google.com" target="_blank">
+            <img src="@_trip.CategoryImage" class="img-fluid" />
+        </a>
+    </div>
+    <div class="d-flex justify-content-center w-100">
+        <div class="location bg-white shadow vw-95 px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>@_trip.Title</h3>
+                <span class="rounded-pill @_trip.StatusBgColor text-white m-0 px-2 fs-12">@_trip.DisplayStatus</span>
+            </div>
+            <div class="vstack">
+                <label class="m-0 px-2 py-1">
+                    <i class="bx bx-map m-0 p-0 me-2"></i>
+                    <span class="">@_trip.Location</span>
+                </label>
+                <label class="m-0 px-2 py-1">
+                    <i class="bx bx-calendar m-0 p-0 me-2"></i>
+                    <span class="">@_trip.FromDate?.ToShortDateString() - @_trip.ToDate?.ToShortDateString()</span>
+                </label>
+                <label class="m-0 px-2 py-1">
+                    <i class="bx bx-money m-0 p-0 me-2"></i>
+                    <span class="">@_totalExpense.ToString("c")</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid my-3 p-2">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <h4 class="m-0">Masraflar</h4>
+            <label class="bg-light text-dark rounded-pill p-0 px-2 py-1 m-0 d-flex align-items-center" @onclick="GoToAddExpensePage">
+                <i class="bx bx-plus text-dark m-0 p-0"></i>
+                <span class="text-dark">Masraf Ekle</span>
+            </label>
+        </div>
+
+        @if (!_trip.Expenses.Any())
+        {
+            <div class="empty-trips-container d-flex w-100 flex-column align-items-center justify-content-center" style="min-height: 200px">
+                <label class="text-muted fs-4 mb-2">Henüz Bir Masraf Eklemediniz</label>
+                <button type="button" class="btn btn-secondary rounded-pill" @onclick="GoToAddExpensePage">
+                    <i class="bx bx-plus m-0 p-0"></i>
+                    <span>Masraf Ekle</span>
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="row mt-3">
+                @foreach(var expense in _trip.Expenses)
+{
+                        <div class="col-12" @onclick="() => GoToEditExpensePage(expense.Id)">
+                            <div class="card my-2 p-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="vstack">
+                                        <h4>@expense.For <span class="badge bg-primary">@expense.Category</span></h4>
+                                        <label>
+                                            <i class="bx bx-calendar me-2"></i>
+                                            <span>@expense.SpentOn?.ToShortDateString()</span>
+                                        </label>
+                                    </div>
+                                    <h3>
+                                        @expense.Amount.ToString("c")
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+}
+            </div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int TripId { get; set; }
+
+    private Trip _trip;
+
+    private double _totalExpense = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AppState.AddTabbarItems(new TabbarItem("bx-edit bx-sm", () => GoToEditTripPage()));
+        Maui.ShowLoader();
+        _trip = await TripService.GetTripAsync(TripId, includeExpenses: true);
+        AppState.SetInnerPageTitle(_trip.Title);
+        _totalExpense = _trip.Expenses.Sum(e => e.Amount);
+        Maui.HideLoader();
+    }
+
+    private void GoToAddExpensePage()
+    {
+        NavigationManager.GoToInnerPage($"/trips/{TripId}/expenses/add");
+    }
+    private void GoToEditExpensePage(long expenseId)
+    {
+        NavigationManager.GoToInnerPage($"/trips/{TripId}/expenses/{expenseId}/edit");
+    }
+
+    private void GoToEditTripPage()
+    {
+        NavigationManager.GoToInnerPage($"/trips/{TripId}/edit");
+    }
+}
+<style type="text/css" scoped>
+    .location{
+        border-radius: 20px;
+    }
+</style>
